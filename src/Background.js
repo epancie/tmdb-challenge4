@@ -34,5 +34,11 @@ export default class Background extends Lightning.Component{
             });
 
         });
+
+        this.application.on("hideItem", ()=> {
+          this.tag("Background").patch({
+              alpha:0
+          });
+        });
     }
 }

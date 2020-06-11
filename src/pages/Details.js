@@ -100,6 +100,7 @@ export default class Details extends Lightning.Component{
     }
 
     _handleEnter(){
+      this.application.emit("hideItem");
         Router.navigate(`details/${this._itemType}/${this._itemId}/play`);
     }
 
