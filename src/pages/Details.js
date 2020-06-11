@@ -54,6 +54,7 @@ export default class Details extends Lightning.Component{
         });
 
         this._refocus();
+        
     }
 
     _inactive() {
@@ -101,7 +102,7 @@ export default class Details extends Lightning.Component{
 
     _handleEnter(){
       this.application.emit("hideItem");
-        Router.navigate(`details/${this._itemType}/${this._itemId}/play`);
+      Router.navigate(`details/${this._itemType}/${this._itemId}/play`);
     }
 
     _getFocused() {

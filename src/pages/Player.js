@@ -5,30 +5,54 @@ export default class Player extends Lightning.Component {
     static _template() {
         return {
                 MediaPlayer: {
+                  zIndex:1,
                   type: MediaPlayer,
                 },
+
                 Controls: {
-                  /*
-                   x: 99,
-                   y: 890,
-                   type: PlayerControls, // some custom class for Player Controls
-                   Progress: {
-                     x: 99,
-                     y: 970,
-                     type: PlayerProgress, // some custom class for Player Progress bar
-                   },
-                   */
+                  y:900,
+                  zIndex:5,
+                  ControlsOverlay:{
+                    h:180, w:1920, rect:true, colorBottom: 0xff000000, colorTop: 0x00000000,
+                  },
+                  ImgPlayPause:{
+                    x:60, y:60, h:60, w:60,
+                    src: Utils.asset("mediaplayer/pause.png"),
+                  },
+                  ImgSkip:{
+                    x:150, y:60, h:60, w:60,
+                    src: Utils.asset("mediaplayer/skip.png"),
+                  },
+                  ProgressBar:{
+                    x:400, y:90, h:10, w:1400,
+                    rect:true, color: 0xff777777,
+                  },
+                  ProgressBarFill:{
+                    x:400, y:90, h:10, w:900,
+                    rect:true, color: 0xffDDDDDD,
+                  },
+                  CurrentTimeLabel:{
+                    x:300, y:65,
+                    color: 0xffFFFFFF,
+                    text: {text: "67:35", fontSize: 40, fontFace: "SourceSansPro-Regular"}
+                  },
+                  TotalTimeLabel:{
+                    x:1810, y:65,
+                    color: 0xffFFFFFF,
+                    text: {text: "94:22", fontSize: 40, fontFace: "SourceSansPro-Regular"}
+                  },
+
                  },
             /**
-             * @todo:
-             * - Add MediaPlayer component (that you've imported via SDK)
-             * - Add a rectangle overlay with gradient color to the bottom of the screen
-             * - Add A Controls:{} Wrapper that hosts the following components:
-             *   - PlayPause button image (see static/mediaplayer folder)
-             *   - A skip button (see static/mediaplayer folder)
-             *   - Progress bar (2 rectangles?)
-             *   - add duration label
-             *   - add text label for currentTime
+             * @DONE:
+             * - DONE || Add MediaPlayer component (that you've imported via SDK)
+             * - DONE || Add a rectangle overlay with gradient color to the bottom of the screen
+             * - DONE Add A Controls:{} Wrapper that hosts the following components:
+             *   -DONE  PlayPause button image (see static/mediaplayer folder)
+             *   - DONE A skip button (see static/mediaplayer folder)
+             *   -DONE  Progress bar (2 rectangles?)
+             *   - DONE add duration label
+             *   - DONE add text label for currentTime
              */
         };
     }
@@ -76,6 +100,10 @@ export default class Player extends Lightning.Component {
      */
     _handleEnter(){
 
+    }
+
+    _inactive(){
+      this.application.emit("ShowItemBackground");
     }
 
     /**

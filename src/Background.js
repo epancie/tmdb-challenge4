@@ -36,8 +36,16 @@ export default class Background extends Lightning.Component{
         });
 
         this.application.on("hideItem", ()=> {
+          console.log("Ocultar background");
           this.tag("Background").patch({
               alpha:0
+          });
+        });
+
+        this.application.on("ShowItemBackground", ()=> {
+          console.log("Mostrar background");
+          this.tag("Background").patch({
+              alpha: 1
           });
         });
     }
