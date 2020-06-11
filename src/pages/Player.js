@@ -148,6 +148,34 @@ export default class Player extends Lightning.Component {
         console.log("FUNCIONA este evento?");
     }
 
+    timeToPrityString(seconds){
+      var dateObj = new Date(seconds * 1000);
+        var minutes = dateObj.getUTCMinutes();
+        var seconds = dateObj.getSeconds();
+
+        return minutes.toString().padStart(2, '0')
+            + ':' + seconds.toString().padStart(2, '0');
+    }
+
+    $mediaplayerProgress(t, v) {
+        var progress = t.currentTime * 1400 / t.duration;
+        this.patch({
+
+            Controls: {
+                CurrentTimeLabel: {
+                  text: {text: ( this.timeToPrityString(t.currentTime))}
+                },
+                TotalTimeLabel: {
+                  text: {text: ( this.timeToPrityString(t.duration))}
+                },
+                ProgressBarFill:{
+                  w: ( progress) ,
+                },
+            }
+        });
+    }
+
+
 
     static _states(){
         return [
