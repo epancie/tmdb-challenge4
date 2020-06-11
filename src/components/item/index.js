@@ -108,7 +108,7 @@ export default class Item extends Lightning.Component {
 
     _focus() {
         /**
-         * @todo:
+         * @todo - solved:
          * *
          * Your goal is upon item focus to send a signal to the parent
          * https://rdkcentral.github.io/Lightning/docs/components/communication/signal#docsNav

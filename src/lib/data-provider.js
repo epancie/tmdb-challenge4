@@ -16,7 +16,7 @@ export default () => {
     });
 
     /**
-     * @todo: inside this data-provider for the movies route
+     * @todo - solved: inside this data-provider for the movies route
      * you must await for the getMovies() and invoke the data on the page
      */
 

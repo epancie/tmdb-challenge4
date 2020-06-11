@@ -71,7 +71,7 @@ export default class List extends Lightning.Component {
 
 
     /**
-     * @todo:
+     * @todo - solved:
      * Implement working setIndex method
      * that stores index and position movie component to focus
      * on selected item

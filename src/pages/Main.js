@@ -12,7 +12,7 @@ export default class Main extends Lightning.Component{
     }
 
     _init() {
-        this._index = 0; 
+        this._index = 0;
     }
 
     set data(v){
@@ -20,7 +20,7 @@ export default class Main extends Lightning.Component{
     }
 
     /**
-     * @todo: add set movies() that will be called by the data-provider
+     * @todo - solved: add set movies() that will be called by the data-provider
      * inside set movies create new List child and call it's movies setter
      * and hand over the movies
      */
