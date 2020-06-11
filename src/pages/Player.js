@@ -65,7 +65,7 @@ export default class Player extends Lightning.Component {
          console.log("Player Init 1");
          this.tag('MediaPlayer').updateSettings({consumer: this});
          //this.tag('MediaPlayer').open('video.mp4');
-         this.tag('MediaPlayer').open(Utils.asset("mediaplayer/video.mp4"));
+         play(Utils.asset("mediaplayer/video.mp4"), true);
     }
     /**
      *@todo:
@@ -73,7 +73,36 @@ export default class Player extends Lightning.Component {
      * focus => show controls
      * unfocus => hide controls
      */
+     _focus(){
+       this.controlsShowing = true;
+       this.patch({
+           Controls: {
+               smooth: {alpha:1, duration:0.2,}
+           }
+       });
+     }
 
+     _unfocus() {
+        console.log("EL PLAYER NOOOOOOOO TIENE EL FOCO");
+     }
+
+     _handleUp (){
+       this.controlsShowing = true;
+       this.patch({
+           Controls: {
+               smooth: {alpha:1, duration:0.2,}
+           }
+       });
+     }
+
+     _handleDown(){
+       this.controlsShowing = false;
+       this.patch({
+           Controls: {
+               smooth: {alpha:0, duration:0.2,}
+           }
+       });
+     }
 
     /**
      * @todo:
@@ -83,7 +112,8 @@ export default class Player extends Lightning.Component {
      * @param loop
      */
     play(src, loop) {
-
+      this.tag('MediaPlayer').open(src);
+      this.tag('MediaPlayer').loop = true;
     }
 
     stop() {
@@ -92,6 +122,7 @@ export default class Player extends Lightning.Component {
 
     set item(v){
         this._item = v;
+        console.log("EL ITEM BRO: " + v);
     }
 
     /**
