@@ -1,9 +1,27 @@
-// @todo: import MediaPlayer from SDK
+// @todo - solved: import MediaPlayer from SDK
 import {Lightning, Utils, MediaPlayer} from "wpe-lightning-sdk";
 
 export default class Player extends Lightning.Component {
     static _template() {
         return {
+                MediaPlayer: {
+                  type: MediaPlayer,
+                },
+                Rectangle: {
+                  w: 1920, h: 1080, rect: true
+                }
+                Controls: {
+                  /*
+                   x: 99,
+                   y: 890,
+                   type: PlayerControls, // some custom class for Player Controls
+                   Progress: {
+                     x: 99,
+                     y: 970,
+                     type: PlayerProgress, // some custom class for Player Progress bar
+                   },
+                   */
+                 },
             /**
              * @todo:
              * - Add MediaPlayer component (that you've imported via SDK)
@@ -20,11 +38,14 @@ export default class Player extends Lightning.Component {
 
     _init() {
         /**
-         * @todo:
+         * @todo - solved:
          * tag MediaPlayer component and set correct consumer
          */
+         console.log("Player Init 1");
+         this.tag('MediaPlayer').updateSettings({consumer: this});
+         //this.tag('MediaPlayer').open('video.mp4');
+         this.tag('MediaPlayer').open(Utils.asset("mediaplayer/video.mp4"));
     }
-
     /**
      *@todo:
      * add focus and unfocus handlers
