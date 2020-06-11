@@ -15,7 +15,7 @@ export default class Player extends Lightning.Component {
                   ControlsOverlay:{
                     h:180, w:1920, rect:true, colorBottom: 0xff000000, colorTop: 0x00000000,
                   },
-                  ImgPlayPause:{
+                  PlayPause:{
                     x:60, y:60, h:60, w:60,
                     src: Utils.asset("mediaplayer/pause.png"),
                   },
@@ -65,10 +65,11 @@ export default class Player extends Lightning.Component {
          console.log("Player Init 1");
          this.tag('MediaPlayer').updateSettings({consumer: this});
          //this.tag('MediaPlayer').open('video.mp4');
-         play(Utils.asset("mediaplayer/video.mp4"), true);
+         this.play(Utils.asset("mediaplayer/video.mp4"), true);
+
     }
     /**
-     *@todo:
+     *@todo - solved:
      * add focus and unfocus handlers
      * focus => show controls
      * unfocus => hide controls
@@ -105,7 +106,7 @@ export default class Player extends Lightning.Component {
      }
 
     /**
-     * @todo:
+     * @todo - solved:
      * When your App is in Main state, call this method
      * and play the video loop (also looped)
      * @param src
@@ -114,10 +115,11 @@ export default class Player extends Lightning.Component {
     play(src, loop) {
       this.tag('MediaPlayer').open(src);
       this.tag('MediaPlayer').loop = true;
+      this._setState("Playing");
     }
 
     stop() {
-
+    //  this.tag('MediaPlayer').doPause()
     }
 
     set item(v){
@@ -126,7 +128,7 @@ export default class Player extends Lightning.Component {
     }
 
     /**
-     * @todo:
+     * @todo - solved:
      * - add _handleEnter() method and make sure the video Pauses
      */
     _handleEnter(){
@@ -143,25 +145,35 @@ export default class Player extends Lightning.Component {
      * - Add this Component in a Paused state
      */
     $mediaplayerPause() {
-
+        console.log("FUNCIONA este evento?");
     }
 
 
     static _states(){
         return [
             /**
-             * @todo:
+             * @todo - solved:
              * - Add paused state
              * - on enter change the play to pause button (see static/mediaplayer folder)
              * - on _handleEnter() play the asset again
              * - reset state on play
              */
+             class Playing extends this{
+                 $enter(){
+                     this.tag("PlayPause").src = Utils.asset("mediaplayer/pause.png");
+                 }
+                 _handleEnter(){
+                     this.tag("MediaPlayer").doPause();
+                     this._setState("Paused");
+                 }
+             },
             class Paused extends this{
                 $enter(){
                     this.tag("PlayPause").src = Utils.asset("mediaplayer/play.png");
                 }
                 _handleEnter(){
                     this.tag("MediaPlayer").doPlay();
+                    this._setState("Playing");
                 }
             }
         ]
