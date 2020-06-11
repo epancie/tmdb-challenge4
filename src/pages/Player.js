@@ -7,9 +7,6 @@ export default class Player extends Lightning.Component {
                 MediaPlayer: {
                   type: MediaPlayer,
                 },
-                Rectangle: {
-                  w: 1920, h: 1080, rect: true
-                }
                 Controls: {
                   /*
                    x: 99,
